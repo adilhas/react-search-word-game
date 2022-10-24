@@ -51,13 +51,4 @@ const Cell = (props) => {
   );
 };
 
-// Cell.getDerivedStateFromProps = (props, state) => {
-//   if (state.hilighted && !props.hasSelectionStarted()) {
-//     return {
-//       hilighted: false,
-//     };
-//   }
-//   return null;
-// };
-
 export default Cell;

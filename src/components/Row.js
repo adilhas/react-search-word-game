@@ -6,11 +6,11 @@ const Row = (props) => {
   const { row } = props;
   return (
     <div className="row">
-      {row.map((item, i) => {
+      {row.map((item) => {
         return (
           <Cell
             cell={item}
-            key={i}
+            key={item.id}
             selectionStart={props.selectionStart}
             selectionEnd={props.selectionEnd}
             mouseOver={props.mouseOver}

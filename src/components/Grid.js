@@ -1,6 +1,6 @@
-import React, { Component, useState } from "react";
-import Row from "./Row";
 import "../index.css";
+import Row from "./Row";
+import { useState } from "react";
 
 const Grid = (props) => {
   const { ws } = props;
@@ -16,7 +16,6 @@ const Grid = (props) => {
   }
 
   function selectionEnd(evt) {
-    //let dir;
     if (ws.startBox != null) {
       let id = evt.target.id;
       ws.endBox = ws.getBoxById(id);
@@ -28,17 +27,12 @@ const Grid = (props) => {
       if (obj.match && !obj.found) {
         ws.alreadyFound.push(str);
         ws.wordList.forEach((item) => {
-          // console.log(
-          //   str.split("").reverse().join("").toLowerCase(),
-          //   item.text.toLowerCase()
-          // );
           if (
             item.text.toLowerCase() === str.toLowerCase() ||
             str.split("").reverse().join("").toLowerCase() ===
               item.text.toLowerCase()
           ) {
             item.found = true;
-            // console.log(item);
           }
         });
         strObj.ids.forEach((item) => {
@@ -75,7 +69,7 @@ const Grid = (props) => {
             <Row
               row={row}
               rowIndex={i}
-              key={i}
+              key={row[0].id}
               selectionStart={selectionStart}
               selectionEnd={selectionEnd}
               hasSelectionStarted={hasSelectionStarted}
@@ -88,16 +82,15 @@ const Grid = (props) => {
           style={{ display: toastVisible ? "block" : "block" }}
           className="ws-my-page-success-toast"
         >
-          Index
+          Questions
         </div>
         <ul>
-          {wordList.map((item, i) => {
-            console.log("item", item);
+          {wordList.map((item) => {
             let styleObj = {
               textDecoration: item.found ? "line-through" : "none",
             };
             return (
-              <li key={i} style={styleObj}>
+              <li key={item.question} style={styleObj}>
                 {item.question}
               </li>
             );
@@ -106,22 +99,6 @@ const Grid = (props) => {
       </div>
     </div>
   );
-};
-
-const SuccessToast = (props) => {
-  let state = {
-    visible: props.visible,
-    message: props.message,
-  };
-  alert(props.visible);
-
-  let styleObj = {
-    display: state.visible ? "block" : "block",
-    position: "absolute",
-    right: 0,
-    bottom: 0,
-  };
-  return <div style={styleObj}>{state.message}</div>;
 };
 
 export default Grid;

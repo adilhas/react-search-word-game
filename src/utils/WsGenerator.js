@@ -1,28 +1,11 @@
-function getRandomWords(wordsList) {
-  let lst = [];
-  for (var i = 0; i < 5; i++) {
-    let currItem = wordsList[Math.floor(Math.random() * wordsList.length)];
-    if (lst.indexOf(currItem) === -1) {
-      lst.push(currItem);
-    } else {
-      i--;
-    }
-  }
-  return lst.sort((a, b) => {
-    return b.length - a.length;
-  });
-}
 function WSGenerator(wordList, directions) {
   const answerWords = wordList.map((item) => item.answer);
-  let clen = answerWords.length;
-  let clsIndex = Math.floor(Math.random() * (clen - 11));
 
   this.gridSize = 0;
   this.gridArr = [];
   this.directions =
     directions && directions.length ? directions : [-4, -3, -2, -1, 1, 2, 3, 4];
   this.wordList = answerWords;
-  // wordList && wordList.length ? wordList : getRandomWords(completeList);
 
   this.wordList = this.wordList.map((item, i) => {
     const { question } = wordList.find((data) => data.answer === item);
